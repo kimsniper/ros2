@@ -12,9 +12,10 @@ ROS2 For Begineers 3 - https://www.udemy.com/course/ros2-advanced-core-concepts/
 
 ### Preferred Environment Setup
 
-To run this example without issues, the following setup and environment are preferred
+To run this example without issues, the following environment setup are preferred.
 
-| ---------------- | -------------------- |
+|                  |                      |
+|------------------|----------------------|
 | Operating System | UBUNTU 22.04 (Jammy) |
 | ROS2 Version     | ROS2 Humble          |
 
@@ -29,7 +30,7 @@ Build all packages
 ```bash
 colcon build
 ```
-Build specifig package
+Build specific package
 
 ```bash
 colcon build --packages-select `name_of_package`
