@@ -6,9 +6,9 @@ A beginner's guide to start working with projects based on ROS2
 
 This reposotory is based on Edouard Renard's Udemy courses below:
 
-ROS2 For Beginners   - https://www.udemy.com/course/ros2-for-beginners/
-ROS2 For Beginners 2 - https://www.udemy.com/course/ros2-tf-urdf-rviz-gazebo/
-ROS2 For Begineers 3 - https://www.udemy.com/course/ros2-advanced-core-concepts/
+ROS2 For Beginners   - https://www.udemy.com/course/ros2-for-beginners/ \
+ROS2 For Beginners 2 - https://www.udemy.com/course/ros2-tf-urdf-rviz-gazebo/ \
+ROS2 For Begineers 3 - https://www.udemy.com/course/ros2-advanced-core-concepts/ 
 
 ### Preferred Environment Setup
 
