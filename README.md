@@ -1,6 +1,6 @@
 # ROS2 - Robot Operating System 2 For Beginners
 
-A beginner's guide to start working with projects based on ROS2
+A beginner's guide to start working with projects based on ROS2 using C++
 
 ## Overview
 
