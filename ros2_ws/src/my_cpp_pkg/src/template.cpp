@@ -5,7 +5,7 @@ class NodeName: public rclcpp::Node
 private:
 
 public:
-    MyNode(): Node("node_name")
+    NodeName(): Node("node_name")
     {
 
     }
