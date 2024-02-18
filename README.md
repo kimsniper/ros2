@@ -21,7 +21,58 @@ To run this example without issues, the following environment setup are preferre
 
 **Note: ** In my case, I was able to execute the ROS2 activities using VirtualBox.
 
-## Colcon build
+### Installing ROS2 Humble
+
+ROS2 humble only works well with Ubuntu 22.04. To better follow the installation process \
+clone this repo at home directory.
+
+```bash
+cd
+git clone https://github.com/kimsniper/ros2.git
+```
+
+Step 1: Follow installation mentioned in the link below:
+
+https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html
+
+Step 2: Navigate to /opt/ros/humble. There is a file named setup.bash, this file should be source at bashrc file
+
+Place the text below at the bottom area of .bashrc file
+
+```bash
+source /opt/ros/humble/setup.bash
+```
+
+Step 3: Install colcon build tool
+
+
+```bash
+sudo apt install python3-colcon-common-extensions
+```
+
+Step 4: Source colcon build tool argcomplete
+
+This is to allow colcon build to have autocompletion. Place the text below at the bottom area of .bashrc file
+
+```bash
+source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+```
+
+Step 5: In home directory create the workspace directory and under it, create src directory. Then inside the workspace directory, run the following command
+
+```bash
+colcon build
+```
+
+Step 6: An additional three directories will be created inside the workspace. Navigate inside install directory and there will be setup.bash
+
+Place the text below at the bottom area of .bashrc file
+
+```bash
+source ~/ros2/ros2_ws/install/setup.bash
+```
+
+## Colcon build commands
 
 Navigate to the ros2 workspace directory and run the following command. 
 
@@ -37,3 +88,31 @@ colcon build --packages-select `name_of_package`
 ```
 
 See the [Colcon Tutorial Link](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Colcon-Tutorial.html) for full steps to configure and build ROS2 packages.
+
+## Installing Gazebo
+
+```bash
+sudo apt install ros-humble-gazebo*
+```
+
+maybe also run,
+
+```bash
+sudo apt install gazebo
+```
+
+Then source the setup.bash at .bashrc file
+
+```bash
+source /usr/share/gazebo/setup.bash
+```
+
+## Installing Package To Run URDF - Joint State Publisher GUI
+
+```bash
+sudo apt install ros-humble-joint-state-publisher-gui
+```
+
+## Final note
+
+Usage tutorial to every packages is provided in a readme file inside package directories.
