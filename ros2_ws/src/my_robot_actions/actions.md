@@ -13,7 +13,7 @@ Navigate to the ros2 workspace directory and run the following command.
 Command: ros2 interface show `package name`/`path of action`/`action file`
 
 ```bash
-ros2 run my_cpp_pkg count_until_server
+ros2 run my_robot_actions count_until_server_blocking
 ros2 interface show my_robot_interfaces/action/CountUntil
 ```
 ### List active action interfaces
@@ -31,7 +31,7 @@ Command: ros2 action info `action name` \
 This command should display the number of clients and services as well as the name of the node where it is created
 
 ```bash
-ros2 run my_cpp_pkg count_until_server
+ros2 run my_robot_actions count_until_server_blocking
 ros2 action info /count_until
 ```
 ### Display active action topics
@@ -75,7 +75,7 @@ Command: ros2 action send_goal `action name` `package name`/`path of action`/`ac
 In a terminal execute the following command
 
 ```bash
-ros2 run my_cpp_pkg count_until_server
+ros2 run my_robot_actions count_until_server_blocking
 ```
 
 In another terminal, execute the following command:
@@ -97,13 +97,13 @@ This test will print the counter in server terminal with a period of 1 second.
 In a terminal execute the following command
 
 ```bash
-ros2 run my_cpp_pkg count_until_server_blocking
+ros2 run my_robot_actions count_until_server_blocking
 ```
 
 In another terminal, execute the following command:
 
 ```bash
-ros2 run my_cpp_pkg count_until_client
+ros2 run my_robot_actions count_until_client
 ```
 
 This test will print the counter in server terminal with a period of 1 second.
@@ -113,13 +113,13 @@ This test will print the counter in server terminal with a period of 1 second.
 In a terminal execute the following command
 
 ```bash
-ros2 run my_cpp_pkg count_until_server_non_blocking
+ros2 run my_robot_actions count_until_server_non_blocking
 ```
 
 In another terminal, execute the following command:
 
 ```bash
-ros2 run my_cpp_pkg count_until_client_cancel_test
+ros2 run my_robot_actions count_until_client_cancel_test
 ```
 
 This test will print the counter in server terminal with a period of 1 second. Timer will be initialized to trigger \
@@ -130,31 +130,67 @@ the timer callback after 2 seconds, then a cancellation request will be executed
 In a terminal execute the following command
 
 ```bash
-ros2 run my_cpp_pkg count_until_server_non_blocking
+ros2 run my_robot_actions count_until_server_non_blocking
 ```
 
-In other two terminals, execute the following command with each terminal:
+In other two terminals, execute the following command on each terminal:
 
 ```bash
-ros2 run my_cpp_pkg count_until_client
+ros2 run my_robot_actions count_until_client
 ```
 
 This test will print the counter in server terminal with a period of 1 second to two clients and one server. To test multiple clients, ensure that \
 client nodes will be executed at the same time.
 
-### Test action server through action client to only execute a single request
+### Test action server through action client to only execute a single goal request
 
 In a terminal execute the following command
 
 ```bash
-ros2 run my_cpp_pkg count_until_server_single_request
+ros2 run my_robot_actions count_until_server_single_request
 ```
 
-In other two terminals, execute the following command with each terminal:
+In other two terminals, execute the following command on each terminal:
 
 ```bash
-ros2 run my_cpp_pkg count_until_client
+ros2 run my_robot_actions count_until_client
 ```
 
 This test will implement a single goal request policy. To test multiple clients, ensure that \
 client nodes will be executed at the same time. The client node that was executed later than the other client node will get rejected.
+
+### Test action server through action clients to preempt the current goal execution and run the new goal request
+
+In a terminal execute the following command
+
+```bash
+ros2 run my_robot_actions count_until_server_preempt_current_goal
+```
+
+In other two terminals, execute the following command on each terminal:
+
+```bash
+ros2 run my_robot_actions count_until_client
+```
+
+This test will implement a current goal execution preemption policy. To test multiple clients, ensure that \
+client nodes will be executed at the same time. The client node that was executed first will be preempted and the later goal \
+request will be executed.
+
+### Test action server through action clients to add every request in queue and execute them one at a time
+
+In a terminal execute the following command
+
+```bash
+ros2 run my_robot_actions count_until_server_queue_goals
+```
+
+In other two terminals, execute the following command on each terminal:
+
+```bash
+ros2 run my_robot_actions count_until_client
+```
+
+This test will implement a current goal queueing policy. To test multiple clients, ensure that \
+client nodes will be executed at the same time. All client node goal requests will be added to the queue with the first \
+request be executed first.
