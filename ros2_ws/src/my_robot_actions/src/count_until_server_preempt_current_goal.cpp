@@ -6,7 +6,6 @@ using CountUntil = my_robot_interfaces::action::CountUntil;
 using CountUntilGoalHandle = rclcpp_action::ServerGoalHandle<CountUntil>;
 using namespace std::placeholders;
 
-
 class CountUntilServerNode: public rclcpp::Node
 {
 private:
@@ -15,6 +14,7 @@ private:
     rclcpp::CallbackGroup::SharedPtr _cb_group;
     std::shared_ptr<CountUntilGoalHandle> _goal_handle;
     std::mutex _mutex;
+    rclcpp_action::GoalUUID _preempted_goal_id;
 
     rclcpp_action::GoalResponse goal_callback(const rclcpp_action::GoalUUID &uuid, std::shared_ptr<const CountUntil::Goal> goal)
     {
@@ -35,12 +35,11 @@ private:
             {
                 if(_goal_handle->is_active()) /* If not in terminal state */
                 {
-                    RCLCPP_WARN(this->get_logger(), "A goal is active, rejecting new goal request");
-                    return rclcpp_action::GoalResponse::REJECT;
+                    _preempted_goal_id = _goal_handle->get_goal_id();
+                    RCLCPP_WARN(this->get_logger(), "A goal is active, aborting active goal");
                 }
             }
         }
-
 
         RCLCPP_INFO(this->get_logger(), "Accepting the goal");
         return rclcpp_action::GoalResponse::ACCEPT_AND_EXECUTE;
@@ -77,6 +76,17 @@ private:
         rclcpp::Rate loop_rate(1.0/period);
         for(int i = 0;i < target_number;i++)
         {
+            {
+                std::lock_guard<std::mutex> lock(_mutex);
+                /* Check if preempted goal variable is set to current active goal */
+                if(goal_handle->get_goal_id() == _preempted_goal_id)
+                {
+                    result->reached_number = counter;
+                    goal_handle->abort(result);
+                    return;
+                }
+            }
+
             if(goal_handle->is_canceling())
             {
                 result->reached_number = counter;
