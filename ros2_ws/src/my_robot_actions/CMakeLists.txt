@@ -29,6 +29,9 @@ ament_target_dependencies(count_until_server_single_goal rclcpp rclcpp_action my
 add_executable(count_until_server_preempt_current_goal src/count_until_server_preempt_current_goal.cpp)
 ament_target_dependencies(count_until_server_preempt_current_goal rclcpp rclcpp_action my_robot_interfaces)
 
+add_executable(count_until_server_queue_goals src/count_until_server_queue_goals.cpp)
+ament_target_dependencies(count_until_server_queue_goals rclcpp rclcpp_action my_robot_interfaces)
+
 install(TARGETS
   count_until_server_blocking
   count_until_client
@@ -36,6 +39,7 @@ install(TARGETS
   count_until_client_cancel_test
   count_until_server_single_goal
   count_until_server_preempt_current_goal
+  count_until_server_queue_goals
   DESTINATION lib/${PROJECT_NAME}
 )
 
