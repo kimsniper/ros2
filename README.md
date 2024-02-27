@@ -2,14 +2,6 @@
 
 A beginner's guide to start working with projects based on ROS2 using C++
 
-## Overview
-
-This reposotory is based on Edouard Renard's Udemy courses below:
-
-ROS2 For Beginners   - https://www.udemy.com/course/ros2-for-beginners/ \
-ROS2 For Beginners 2 - https://www.udemy.com/course/ros2-tf-urdf-rviz-gazebo/ \
-ROS2 For Begineers 3 - https://www.udemy.com/course/ros2-advanced-core-concepts/ 
-
 ### Preferred Environment Setup
 
 To run this example without issues, the following environment setup are preferred.
@@ -95,12 +87,6 @@ See the [Colcon Tutorial Link](https://docs.ros.org/en/humble/Tutorials/Beginner
 sudo apt install ros-humble-gazebo*
 ```
 
-maybe also run,
-
-```bash
-sudo apt install gazebo
-```
-
 Then source the setup.bash at .bashrc file
 
 ```bash
@@ -111,6 +97,12 @@ source /usr/share/gazebo/setup.bash
 
 ```bash
 sudo apt install ros-humble-joint-state-publisher-gui
+```
+
+## Installing Package To Enable Zacro
+
+```bash
+sudo apt install ros-humble-xacro
 ```
 
 ## Final note
