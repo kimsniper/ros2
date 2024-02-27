@@ -7,7 +7,7 @@ def generate_launch_description():
     remap_number_topic = ("number", "my_number")
 
     number_publisher_node = Node(
-        package="my_cpp_pkg",
+        package="my_robot_examples",
         executable="number_publisher",
         name="my_number_publisher",
         remappings=[
@@ -20,7 +20,7 @@ def generate_launch_description():
     )
 
     number_counter_node = Node(
-        package="my_cpp_pkg",
+        package="my_robot_examples",
         executable="number_counter",
         name="my_number_counter",
         remappings=[
