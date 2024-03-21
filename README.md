@@ -107,7 +107,7 @@ source /usr/share/gazebo/setup.bash
 sudo apt install ros-humble-joint-state-publisher-gui
 ```
 
-## Installing Package To Enable Zacro
+## Installing Package To Enable Xacro
 
 ```bash
 sudo apt install ros-humble-xacro
