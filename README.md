@@ -19,7 +19,7 @@ To run this example without issues, the following environment setup are preferre
 | Operating System | UBUNTU 22.04 (Jammy) |
 | ROS2 Version     | ROS2 Humble          |
 
-**Note: ** In my case, I was able to execute the ROS2 activities using VirtualBox.
+**Note: ** In my case, I have an Ubuntu 22.04 boot on my PC.
 
 ### Installing ROS2 Humble
 
@@ -64,7 +64,11 @@ Step 5: In home directory create the workspace directory and under it, create sr
 colcon build
 ```
 
-Step 6: An additional three directories will be created inside the workspace. Navigate inside install directory and there will be setup.bash
+Step 6: An additional three directories will be created inside the workspace. Navigate inside install directory and there will be a setup.bash file \
+
+Be sure to source it everytime a new terminal windows is opened
+
+OR
 
 Place the text below at the bottom area of .bashrc file
 
